@@ -18,7 +18,7 @@ def get_request_token():
     return dict(urlparse.parse_qsl(content.decode('utf-8')))
 
 
-def get_oauth_verifier(request_token):
+def __get_oauth_verifier(request_token):
     # Ask the user to authorize our app and give us the pin code
     print("Go to the following site in your browser:")
     print(get_oauth_verifier_url(request_token))
@@ -27,6 +27,7 @@ def get_oauth_verifier(request_token):
     return input("What is the pin? ")
 
 
+@staticmethod
 def get_oauth_verifier_url(request_token):
     return "{}?oauth_token={}".format(constants.AUTHORIZATION_URL, request_token['oauth_token'])
 
